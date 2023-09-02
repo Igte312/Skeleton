@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AnimationController } from '@ionic/angular';
 
+
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -16,9 +18,10 @@ export class HomePage {
   EducLevel: string = '';
   static user: string = '';
   @ViewChild("title", {read: ElementRef, static: true}) title!: ElementRef;
-  @ViewChild('nameInput', { static: false }) nameInput!: ElementRef;
-  @ViewChild('lastNameInput', { static: false }) lastNameInput!: ElementRef;
-
+  @ViewChild('nameInput', { read: ElementRef, static : true }) nameInput!: ElementRef;
+  @ViewChild('lastNameInput', { read: ElementRef, static : true }) lastNameInput!: ElementRef;
+  apellido : any ;
+  nombreN : any ;
 
   constructor(
     private activeroute: ActivatedRoute,
@@ -26,6 +29,11 @@ export class HomePage {
     private alertController: AlertController,
     private animationCtrl: AnimationController
   ) {
+    this.nombreN = Animation.prototype as any;
+    this.apellido = Animation.prototype as any;
+    this.nameInput = ElementRef.prototype as any;
+    this.lastNameInput = ElementRef.prototype as any;
+
     this.activeroute.queryParams.subscribe((params) => {
       if (
         this.router.getCurrentNavigation()?.extras?.state
@@ -46,43 +54,53 @@ export class HomePage {
       .iterations(Infinity)
       .keyframes([
         { offset: 0, transform: 'translateX(0)', opacity: 0.2 },
-        { offset: 0.5, transform: 'translateX(150px)', opacity: 2 },
+        { offset: 0.5, transform: 'translateX(150px)', opacity: 3 },
         { offset: 1, transform: 'translateX(0)', opacity: 0.2 },
       ]);
 
     animation.play();
     
-  }
-//---------------------------------------------------------------------------------
-  nullfield2() {
-    // Aplicar la animación al campo de nombre
-    const nameAnimation = this.animationCtrl
-      .create()
-      .addElement(this.nameInput.nativeElement)
-      .duration(1000)
-      .keyframes([
-        { offset: 0, transform: 'translateX(0)' },
-        { offset: 1, transform: 'translateX(50px)' },
-      ]);
-  
-    // Aplicar la animación al campo de apellido
-    const lastNameAnimation = this.animationCtrl
+    this.nombreN = this.animationCtrl
+    .create()
+    .addElement(this.nameInput.nativeElement)
+    .duration(1000) // Duración de la vibración en milisegundos (2 segundos)
+    //.iterations(Infinity) // Repetir infinitamente
+    .direction('alternate') // Invertir la dirección para crear el efecto de vibración
+    .keyframes([
+      { offset: 0.1, transform: 'translateX(-5px)' }, // Mover hacia la izquierda
+      { offset: 0.2, transform: 'translateX(5px)' }, // Mover hacia la derecha
+      { offset: 0.3, transform: 'translateX(-5px)' },
+      { offset: 0.4, transform: 'translateX(5px)' },
+    
+      { offset: 1, transform: 'translateX(0)' }, // Volver a la posición original
+    ]);
+
+    this.apellido = this.animationCtrl
       .create()
       .addElement(this.lastNameInput.nativeElement)
-      .duration(1000)
-      .keyframes([
-        { offset: 0, transform: 'translateX(0)' },
-        { offset: 1, transform: 'translateX(50px)' },
-      ]);
-  
-    // Reproducir ambas animaciones
-    nameAnimation.play();
-    lastNameAnimation.play();
-  
-    // Resto del código de limpiar
+      .duration(1000) // Duración de la vibración en milisegundos (2 segundos)
+    //.iterations(Infinity) // Repetir infinitamente
+    .direction('alternate') // Invertir la dirección para crear el efecto de vibración
+    .keyframes([
+      { offset: 0.1, transform: 'translateX(-5px)' }, // Mover hacia la izquierda
+      { offset: 0.2, transform: 'translateX(5px)' }, // Mover hacia la derecha
+      { offset: 0.3, transform: 'translateX(-5px)' },
+      { offset: 0.4, transform: 'translateX(5px)' },
+    
+      { offset: 1, transform: 'translateX(0)' }, // Volver a la posición original
+    ]);
+  }
+
+//---------------------------------------------------------------------------------
+  nullfield2() {
+    // Aplicar la anim;ación al campo de nombre
+    this.nombreN.play();
+    this.apellido.play();
+    
+
     this.name = '';
     this.last_name = '';
-    this.EducLevel = '';
+    this.EducLevel = ''; 
     this.bDate = '';
   }
   //---------------------------------------------------------------------------------
