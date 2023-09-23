@@ -2,6 +2,21 @@
   <ion-toolbar collapse="condense">
     <ion-title #title size="large">SkeletonAPP</ion-title>
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="selectedSegment">
+      <ion-segment-button value="mis-datos" [routerLink]="['/home/mis-datos']">
+        <ion-label>Mis Datos</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="certificaciones" [routerLink]="['/home/certificaciones']">
+        <ion-label>Certificados</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="exp-laboral" [routerLink]="['/home/exp-laboral']">
+        <ion-label>Exp Laboral</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+  <!-- <ion-router-outlet></ion-router-outlet> -->
+
 </ion-header>
 
 <ion-content id="container">
@@ -52,7 +67,7 @@
     <ion-col size="6">
       <ion-button (click)="mostrarInformacion()">Mostrar</ion-button>
     </ion-col>
-  </ion-row>
+  </ion-row> 
 
 </ion-content>
 

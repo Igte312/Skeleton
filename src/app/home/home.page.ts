@@ -11,6 +11,8 @@ import { AnimationController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  selectedSegment: string = 'mis-datos'; // Valor predeterminado
+
   data: any;
   bDate: string = '';
   name: string = '';

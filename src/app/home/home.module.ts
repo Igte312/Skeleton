@@ -6,7 +6,7 @@ import { HomePage } from './home.page';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { HomePageRoutingModule } from './home-routing.module';
-
+import { MyNavigationBarComponent } from '../my-navigation-bar/my-navigation-bar.component';
 
 @NgModule({
   imports: [
@@ -18,6 +18,6 @@ import { HomePageRoutingModule } from './home-routing.module';
 
     
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, MyNavigationBarComponent]
 })
 export class HomePageModule {}
